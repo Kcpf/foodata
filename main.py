@@ -37,39 +37,48 @@ from headers import *
 logo_render = Figlet(font='slant')
 print(logo_render.renderText('Ifood Scraping'))
 
-# Prompting first questions
-answers = prompt(questions_initial, style=style)
-latitude_input = str(answers["latitude"])
-longitude_input = str(answers["longitude"])
-search_input = "+".join(answers["restaurantName"].split())
+# Search Method
 
-# Searching for resturants with name near the coordinates
+answers = prompt(questions_search, style=style)
+if answers['searchSelector'] == "IFood Restaurant ID":
+    answers = prompt(question_id, style=style)
+    store_name = answers["restaurantName"]
+    store_id = answers["restaurantId"]
+else:
+    # Prompting first questions
+    answers = prompt(questions_initial, style=style)
+    latitude_input = str(answers["latitude"])
+    longitude_input = str(answers["longitude"])
+    search_input = "+".join(answers["restaurantName"].split())
 
-url = f"https://marketplace.ifood.com.br/v2/search/merchants?latitude={latitude_input}&longitude={longitude_input}&channel=IFOOD&term={search_input}&size=100&page=0"
+    # Searching for resturants with name near the coordinates
 
-response = requests.request("GET", url, headers=headers_first, data=payload).json()["merchants"]["data"]
+    url = f"https://marketplace.ifood.com.br/v2/search/merchants?latitude={latitude_input}&longitude={longitude_input}&channel=IFOOD&term={search_input}&size=100&page=0"
 
-options = {merchant["name"]:merchant["id"] for merchant in response}
+    response = requests.request("GET", url, headers=headers_first, data=payload).json()["merchants"]["data"]
 
-for each in options:
-    questions_restaurant[0]["choices"].append({
-        'name':each
-    })
+    options = {merchant["name"]:merchant["id"] for merchant in response}
 
-# Selecting restaurant
+    for each in options:
+        questions_restaurant[0]["choices"].append({
+            'name':each
+        })
 
-answers = prompt(questions_restaurant, style=style)
+    # Selecting restaurant
+
+    answers = prompt(questions_restaurant, style=style)
 
 
-store_id = options[answers["restaurantSelector"]]
-store_name = answers["restaurantSelector"]
+    store_id = options[answers["restaurantSelector"]]
+    store_name = answers["restaurantSelector"]
 
 # Asking if user want to save images from menu
 
 answer_image = prompt(questions_image, style=style)
 
+os.mkdir(f"{os.getcwd()}/assets/{store_name}")
+
 if answer_image["downloadImages"] == True:
-    os.mkdir(f"{os.getcwd()}/assets/{store_name}")
     os.mkdir(f"{os.getcwd()}/assets/{store_name}/images")
     image_path = f"{os.getcwd()}/assets/{store_name}/images"
 
@@ -151,7 +160,7 @@ for index, prod in enumerate(generated_menu.getAllProducts()):
 df = pd.DataFrame.from_dict(dictionary, orient="index",
                             columns=["Category", "Name", "Price", "Image Path", "Description"])
 
-restaurant_name = "_".join(answers["restaurantSelector"].split())
+restaurant_name = "_".join(store_name.split())
 
 # Saving information from Dataframe on Excel
 

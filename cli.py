@@ -8,7 +8,36 @@ style = style_from_dict({
     Token.Instruction: '',  # default
     Token.Answer: '#2196f3 bold',
     Token.Question: '',
-})
+}) 
+
+questions_search = [
+    {
+        'type': 'list',
+        'message': 'Search with:',
+        'name': 'searchSelector',
+        'choices': [
+            {
+                'name': 'IFood Restaurant ID'
+            },
+            {
+                'name': 'Search Tool'
+            }
+        ]
+    }
+]
+
+question_id = [
+    {
+        'type': 'input',
+        'message': 'What is your restaurants name?',
+        'name': 'restaurantName',
+    },
+    {
+        'type':'input',
+        'message':'What is the restaurant Ifood ID?',
+        'name':'restaurantId'
+    }
+]
 
 questions_initial = [
     {
