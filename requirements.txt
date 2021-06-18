@@ -1,5 +1,3 @@
-PyInquirer
 requests
-pandas
-termcolor
-pyfiglet
+unittest
+dotenv
