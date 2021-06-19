@@ -58,7 +58,6 @@ The API is exposed via the ``foodata.api`` package.
 
 You will need to get authentication from their website (see .env.example). The easiest way, that I have found until now, is to get the authentication from requests sent when using their services. 
 
-=====
 Todo
 =====
 
