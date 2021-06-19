@@ -1,4 +1,4 @@
-﻿Foodata
+# Foodata
 
 A Python wrapper around the IFood API.
 
@@ -7,7 +7,7 @@ Introduction
 
 This library provides a pure Python interface for the IFood API. It was tested with Python 3.
 
-`IFood <http://ifood.com.br>`_ provides a service that allows people to order food from restaurants in their app. IFood exposes a web services API, that was found during a network analysis on their website and this library is intended to make it easier for all people to access these provided data.
+[IFood](http://ifood.com.br) provides a service that allows people to order food from restaurants in their app. IFood exposes a web services API, that was found during a network analysis on their website and this library is intended to make it easier for all people to access these provided data.
 
 Getting the code
 ================
@@ -44,12 +44,13 @@ Models
 =====
 
 The library utilizes models to represent various data structures returned by IFood. Those models are:
-    * foodata.classes.Category
-    * foodata.classes.Merchant
-    * foodata.classes.Item
-    * foodata.classes.Facet
-    * foodata.classes.Choice
-    * foodata.classes.Garnish
+
+    - foodata.classes.Category
+    - foodata.classes.Merchant
+    - foodata.classes.Item
+    - foodata.classes.Facet
+    - foodata.classes.Choice
+    - foodata.classes.Garnish
 
 API
 =====
@@ -61,7 +62,7 @@ You will need to get authentication from their website (see .env.example). The e
 Todo
 =====
 
-Patches, pull requests, and bug reports are `welcome <https://github.com/Kcpf/foodata/issues/new>`_, just please keep the style consistent with the original source.
+Patches, pull requests, and bug reports are [welcome](https://github.com/Kcpf/foodata/issues/new), just please keep the style consistent with the original source.
 
 In particular, having more example scripts would be a huge help. Also, creating an useful documentation.
 
