@@ -11,7 +11,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      X_IFOOD_SESSION_ID: ${{ secrets.X_IFOOD_SESSION_ID }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+    
     steps:
     - uses: actions/checkout@v2
     
