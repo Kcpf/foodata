@@ -1,7 +1,8 @@
-from dotenv import dotenv_values
+from os import getenv
+from dotenv import load_dotenv
 
 
-config = dotenv_values(".env")
+load_dotenv(".env")
 payload = {}
 
 headers_first = {
@@ -9,19 +10,19 @@ headers_first = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
   'Accept': 'application/json, text/plain, */*',
   'Cache-Control': 'no-cache, no-store',
-  'X-Ifood-Session-Id': config["X_IFOOD_SESSION_ID"],
+  'X-Ifood-Session-Id': getenv("X_IFOOD_SESSION_ID"),
   'platform': 'Desktop',
   'app_version': '9.2.1',
 }
 
 headers_second = {
-  'access_key': config["ACCESS_KEY"],
+  'access_key': getenv("ACCESS_KEY"),
   'browser': 'Windows',
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
   'Accept': 'application/json, text/plain, */*',
-  'secret_key': config["SECRET_KEY"],
+  'secret_key': getenv("SECRET_KEY"),
   'Cache-Control': 'no-cache, no-store',
-  'X-Ifood-Session-Id': config["X_IFOOD_SESSION_ID"],
+  'X-Ifood-Session-Id': getenv("X_IFOOD_SESSION_ID"),
   'platform': 'Desktop',
   'app_version': '9.2.1',
 }
